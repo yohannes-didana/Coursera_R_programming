@@ -50,6 +50,7 @@ pollutantmean <-  function(directory, pollutant="sulfate" ,id=1:332){
 
 pollutantmean("specdata", "sulfate", 1:10)
 pollutantmean("specdata", "nitrate", 70:72)
-pollutantmean("specdata", "nitrate", 23)
+pollutantmean("specdata", "nitrate", 34)
+pollutantmean("specdata", "sulfate", 34)
 
-  
+pollutantmean("specdata", "nitrate")
