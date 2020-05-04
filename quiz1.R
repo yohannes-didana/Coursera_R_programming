@@ -145,3 +145,12 @@ cbind(patients, my_matrix)
 my_data <- data.frame(patients, my_matrix)
 cnames <- c("patient", "age", "weight","bp", "rating", "test")
 colnames(my_data) <- cnames
+
+#1. Everything that exists
+#is an object. 2. Everything that happens is a function call.
+
+#strptime  ,  difftime()
+strptime("October 17, 1986 08:24", "%B %d, %Y %H:%M")
+difftime(Sys.time(), t1, units = 'days')
+
+#lubridate package by Hadley Wickham.
