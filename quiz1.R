@@ -148,9 +148,96 @@ colnames(my_data) <- cnames
 
 #1. Everything that exists
 #is an object. 2. Everything that happens is a function call.
-
+list
 #strptime  ,  difftime()
 strptime("October 17, 1986 08:24", "%B %d, %Y %H:%M")
 difftime(Sys.time(), t1, units = 'days')
 
 #lubridate package by Hadley Wickham.
+
+
+x <- list(a=1:5, b =rnorm(10))
+
+c <- lapply( x, mean)
+
+x <- matrix(rnorm(200), 20, 10)
+
+apply(x, 2, mean)
+
+apply(x, 1, sum)
+
+apply(x, 1, quantile, probs = c(0.25, 0.75))
+
+
+a <- array(rnorm(400), c(2,2,10))
+
+apply(a, c(1,2), mean)
+
+rowMeans(a, dims = 2)
+
+mapply(rep, 1:4, 4:1)
+
+noise <- function(n , mean, sd) {
+  rnorm(n, mean, sd)
+  
+}
+
+noise(5 , 1, 2)
+
+noise(1:5, 1:5, 2)
+
+mapply(noise, 1:5, 1:5, 2)
+
+x <- c(rnorm(10), runif(10) , rnorm(10,1))
+
+f <-gl(3, 10)
+tapply(x, f, mean)
+tapply(x, f, mean, simplify = F)
+tapply(x, f, range)
+
+lapply(split(x, f), mean)
+#splitting data frame
+library(datasets)
+head(airquality)
+
+s <- split(airquality, airquality$Month)
+lapply(s, function(x) colMeans(x[,c("Ozone", "Solar.R", "Wind")]))
+sapply(s, function(x) colMeans(x[,c("Ozone", "Solar.R", "Wind")]))
+sapply(s, function(x) colMeans(x[,c("Ozone", "Solar.R", "Wind")], na.rm =T))
+
+lm(y~ x)
+
+data(iris)
+
+s <- split(iris, iris$Species)
+sapply(s, function(x) colMeans(x[,c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width")]))
+colMeans(iris)
+apply(iris[,1:4], 2, mean)
+apply(iris, 1, mean)
+
+data(mtcars)
+
+tapply(mtcars$hp, mtcars$cyl, mean)
+
+with(mtcars, tapply(mpg, cyl, mean))
+
+sapply(split(mtcars$mpg, mtcars$cyl), mean)
+
+#viewinfo()
+
+#In general, if the result is a list where every element is of length one, then
+#sapply() returns a vector. If the result is a list where every element is a vector of
+#the same length (> 1), sapply() returns a matrix. If sapply() can't figure things
+#out, then it just returns a list, no different from what lapply() would give you.
+
+#anonymous functions
+#lapply(unique_vals, function(elem) elem[2])
+
+
+#dim(), head(), str(), and summary()
+
+#tapply(flags$population,flags$landmass, summary)
+
+#vapply(flags, unique, numeric(1))
+
+#vapply(flags, class, character(1))
